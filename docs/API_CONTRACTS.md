@@ -11,6 +11,9 @@ Os endpoints abaixo agora têm uma implementação local mínima. Eles não cons
 | GET | `/api/auth/me` | Retorna somente a identidade da sessão atual. |
 | GET | `/api/projects` | Lista projetos do proprietário autenticado. |
 | POST | `/api/projects` | Cria projeto privado; proprietário vem da sessão. |
-| GET/PATCH | `/api/projects/{id}` | Consulta/edita somente se o ID pertencer à sessão. |
+| GET/PATCH | `/api/projects/{id}` | Consulta ou cria nova revisão somente com `expectedRevision` atual. |
+| GET | `/api/projects/{id}/revisions` | Lista revisões imutáveis do proprietário. |
+| GET | `/api/projects/{id}/revisions/{revisionNumber}` | Consulta snapshot específico autorizado. |
+| POST | `/api/projects/{id}/revisions/{revisionNumber}/restore` | Cria nova revisão a partir de snapshot anterior. |
 
 Falhas de autorização retornam `404 project_not_found` para não confirmar a existência de recursos de outro usuário. O backend persiste componentes, documentação, diagramas, fotografias, evidências e snapshots de versão. Publicação, compartilhamento, exclusão e MCP continuam fora do escopo.
