@@ -6,7 +6,7 @@ Voltrama Studio + Community é uma fundação open source para engenharia eletr�
 
 ## Estado atual
 
-- Interface estática responsiva em HTML, CSS e JavaScript sem dependências externas.
+- Interface responsiva em HTML, CSS e JavaScript, servida pelo backend local.
 - Catálogo demonstrativo com busca, filtros, detalhes, documentação, componentes e evidências.
 - Studio e Community consomem o mesmo contrato de projeto; autenticação e persistência ficam para um backend futuro.
 - Identidade visual original baseada em trilhas de circuito e nós de conexão.
@@ -19,7 +19,7 @@ Como o front-end usa ES modules e a bancada privada usa a API local, execute por
 npm run dev
 ```
 
-Abra `http://localhost:4173`. Crie uma conta de demonstração com senha de pelo menos 12 caracteres para testar a bancada privada. Para os testes automatizados, execute `npm test`.
+Abra `http://127.0.0.1:4173`. O servidor de desenvolvimento escuta somente no loopback e não deve ser exposto à rede. Crie uma conta de demonstração com senha de pelo menos 12 caracteres para testar a bancada privada. Para os testes automatizados, execute `npm test`.
 
 ## Documentação
 
@@ -31,7 +31,7 @@ Abra `http://localhost:4173`. Crie uma conta de demonstração com senha de pelo
 
 ## Princípios
 
-Clareza antes de automação, interoperabilidade antes de lock-in, rastreabilidade antes de confiança implícita e acessibilidade desde o primeiro componente. Projetos privados devem ser protegidos no servidor, nunca apenas pela UI. Esta implementação é um MVP local e ainda requer revisão de segurança antes de produção.
+Clareza antes de automação, interoperabilidade antes de lock-in, rastreabilidade antes de confiança implícita e acessibilidade desde o primeiro componente. Projetos privados devem ser protegidos no servidor, nunca apenas pela UI. Persistência de projetos e snapshots é implementada no MVP local; o servidor, sessões e cookies ainda requerem TLS, store de sessão adequado e revisão de segurança antes de produção.
 
 ## Licença
 

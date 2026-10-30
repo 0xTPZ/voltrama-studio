@@ -24,4 +24,4 @@ Usar Node.js 24, HTTP nativo, SQLite embutido (`node:sqlite`) e Argon2id (`argon
 
 ## Limites
 
-Sessões estão em memória nesta etapa e expiram em 24h; reiniciar o servidor exige novo login, mas os projetos permanecem no SQLite. Cookies locais não usam `Secure` fora de produção. Ainda faltam rate limiting distribuído, recuperação de conta, rotação de sessão, gestão de convites e revisão de segurança/privacidade para produção.
+Sessões estão em memória nesta etapa e expiram em 24h; reiniciar o servidor exige novo login, mas os projetos permanecem no SQLite. O servidor local vincula explicitamente `127.0.0.1`; não é um servidor público. Cookies locais não usam `Secure` fora de produção. Ainda faltam rate limiting distribuído, recuperação de conta, rotação de sessão, gestão de convites, TLS e revisão de segurança/privacidade para produção.
