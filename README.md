@@ -13,24 +13,25 @@ Voltrama Studio + Community é uma fundação open source para engenharia eletr�
 
 ## Executar localmente
 
-Como o front-end usa ES modules, execute por HTTP local:
+Como o front-end usa ES modules e a bancada privada usa a API local, execute por HTTP:
 
 ```text
 npm run dev
 ```
 
-Abra `http://localhost:4173`. Para os testes automatizados, execute `npm test`.
+Abra `http://localhost:4173`. Crie uma conta de demonstração com senha de pelo menos 12 caracteres para testar a bancada privada. Para os testes automatizados, execute `npm test`.
 
 ## Documentação
 
 - [Arquitetura](docs/ARCHITECTURE.md)
 - [Community](docs/COMMUNITY.md)
 - [Contratos de API](docs/API_CONTRACTS.md)
+- [ADR do backend](docs/ADR-003-backend.md)
 - [Integrações](docs/INTEGRATIONS.md)
 
 ## Princípios
 
-Clareza antes de automação, interoperabilidade antes de lock-in, rastreabilidade antes de confiança implícita e acessibilidade desde o primeiro componente. Projetos privados devem ser protegidos no servidor, nunca apenas pela UI.
+Clareza antes de automação, interoperabilidade antes de lock-in, rastreabilidade antes de confiança implícita e acessibilidade desde o primeiro componente. Projetos privados devem ser protegidos no servidor, nunca apenas pela UI. Esta implementação é um MVP local e ainda requer revisão de segurança antes de produção.
 
 ## Licença
 
