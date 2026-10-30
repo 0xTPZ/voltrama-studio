@@ -13,7 +13,7 @@ O build permitido contém somente `dist/index.html`, `dist/app.mjs`, `dist/style
 
 ## GitHub Pages
 
-O workflow `.github/workflows/pages.yml` constrói e publica somente a branch `m0-004/community-showcase`. Se Pages ainda não estiver habilitado no repositório, um administrador deve abrir Settings → Pages, escolher GitHub Actions como source e reexecutar o workflow. Nenhuma API Node é implantada; a URL esperada é `https://0xTPZ.github.io/voltrama-studio/` após a configuração do Pages.
+O workflow `.github/workflows/pages.yml` constrói e publica somente a branch `m0-004/community-showcase`. O Pages foi habilitado em modo workflow e a política do ambiente autoriza somente esta branch. Nenhuma API Node é implantada; a URL pública é `https://0xtpz.github.io/voltrama-studio/`.
 
 ## Limites
 
