@@ -8,7 +8,7 @@ Voltrama Studio + Community é uma fundação open source para engenharia eletr�
 
 - Interface estática responsiva em HTML, CSS e JavaScript sem dependências externas.
 - Catálogo demonstrativo com busca, filtros, detalhes, documentação, componentes e evidências.
-- Studio e Community consomem o mesmo contrato de projeto; autenticação e persistência ficam para um backend futuro.
+- O Community usa snapshots públicos versionados e allowlisted; a prévia de publicação é informativa e não altera projetos privados.
 - Identidade visual original baseada em trilhas de circuito e nós de conexão.
 
 ## Executar localmente
@@ -27,6 +27,7 @@ Abra `http://localhost:4173`. Para os testes automatizados, execute `npm test`.
 - [Community](docs/COMMUNITY.md)
 - [Contratos de API](docs/API_CONTRACTS.md)
 - [Integrações](docs/INTEGRATIONS.md)
+- [Contrato de documentação pública](docs/PUBLIC_DOCUMENTATION_CONTRACT.md)
 
 ## Princípios
 
