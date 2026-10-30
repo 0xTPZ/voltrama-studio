@@ -21,6 +21,10 @@ npm run dev
 
 Abra `http://127.0.0.1:4173`. O servidor de desenvolvimento escuta somente no loopback e não deve ser exposto à rede. Crie uma conta de demonstração com senha de pelo menos 12 caracteres para testar a bancada privada. Para os testes automatizados, execute `npm test`.
 
+Para provisionar a conta inicial do proprietário em uma instalação local já existente, pare o servidor e execute `npm run bootstrap:owner`. O comando cria um backup antes da migração, é idempotente e grava a senha inicial apenas como hash Argon2id no banco e como segredo protegido por DPAPI no perfil local do Windows. A senha nunca aparece na saída do comando; o proprietário deve recuperá-la pelo mecanismo local protegido e trocá-la imediatamente pelo endpoint autenticado de alteração de senha. O bootstrap não é um endpoint HTTP e não deve ser executado contra banco de produção.
+
+No Windows, o proprietário pode executar `powershell -ExecutionPolicy Bypass -File tools/recover-owner-credential.ps1` localmente. O assistente copia a credencial para a área de transferência, sem imprimi-la. Cole-a apenas no campo de senha temporária da tela de primeiro acesso e depois limpe a área de transferência.
+
 ## Documentação
 
 - [Arquitetura](docs/ARCHITECTURE.md)
