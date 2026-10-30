@@ -1,0 +1,6 @@
+{
+  "name": "voltrama-studio",
+  "private": true,
+  "type": "module",
+  "scripts": {"dev": "node tools/dev-server.mjs", "test": "node tests/smoke.mjs && node tests/community.mjs && node tests/navigation.mjs"}
+}

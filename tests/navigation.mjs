@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import { demoProjects } from '../src/project-model.mjs';
+import { filterProjects, parseRoute, routeHash } from '../src/router.mjs';
+assert.deepEqual(parseRoute('#project/demo-sense-node?query=rail&category=fontes'),{name:'project',projectId:'demo-sense-node',query:'rail',category:'fontes'});
+assert.equal(parseRoute('').name,'community');
+assert.equal(routeHash('project',{projectId:'demo-sense-node',query:'sense'}),'#project/demo-sense-node?query=sense');
+assert.equal(filterProjects(demoProjects,{query:'rail'}).length,1);
+assert.equal(filterProjects(demoProjects,{category:'fontes'}).length,1);
+assert.equal(filterProjects(demoProjects,{query:'missing'}).length,0);
+assert.equal(parseRoute('#project/not-real').projectId,'not-real');
+console.log('navigation: ok — deep links, query state and filtering contracts pass');

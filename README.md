@@ -13,7 +13,13 @@ Voltrama Studio + Community é uma fundação open source para engenharia eletr�
 
 ## Executar localmente
 
-Abra `src/index.html` em um navegador moderno ou sirva a pasta `src/` com qualquer servidor HTTP estático. Execute `node tests/smoke.mjs` para os testes automatizados.
+Como o front-end usa ES modules, execute por HTTP local:
+
+```text
+npm run dev
+```
+
+Abra `http://localhost:4173`. Para os testes automatizados, execute `npm test`.
 
 ## Documentação
 
