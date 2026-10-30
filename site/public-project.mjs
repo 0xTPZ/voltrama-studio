@@ -1,53 +1,10 @@
-export const PUBLIC_SCHEMA_VERSION = '1.0';
-
+export const PUBLIC_SCHEMA_VERSION = '1.1';
+const PUBLIC_FIELDS = new Set(['id','title','description','objectives','developmentState','documentation','diagrams','photographs','testEvidence','components','versions','author','collaborators','license','notices']);
+const PRIVATE_KEYS = new Set(['visibility','ownerId','session','password','internalId','privateNotes']);
 const clone = value => JSON.parse(JSON.stringify(value));
-
-export function createPublicSnapshot(input, authorization = {}) {
-  const allowedFields = new Set(authorization.fields || []);
-  const allowedFiles = new Set(authorization.files || []);
-  const source = clone(input);
-  const snapshot = {
-    schemaVersion: PUBLIC_SCHEMA_VERSION,
-    id: source.id,
-    title: source.title,
-    description: source.description,
-    objective: source.objective,
-    objectives: source.objectives || [source.objective].filter(Boolean),
-    category: source.category,
-    developmentState: source.state,
-    components: source.components || [],
-    documentation: source.docs || [],
-    diagrams: (source.media || []).filter(file => allowedFiles.has(file)),
-    photographs: [],
-    measurements: source.measurements || [],
-    evidence: source.evidence || source.tests || [],
-    revisionHistory: source.revisionHistory || [{ label: source.version, persisted: true }],
-    author: source.author,
-    collaborators: source.collaborators || [],
-    license: source.license,
-    notices: source.notices || ['Demonstração pública; não representa validação elétrica.'],
-    files: [...allowedFiles],
-    publication: { kind: 'public-snapshot', sourceRevision: source.version || null, explicitAuthorization: true }
-  };
-  for (const key of Object.keys(snapshot)) {
-    if (!['schemaVersion','id','publication'].includes(key) && allowedFields.size && !allowedFields.has(key)) delete snapshot[key];
-  }
-  return snapshot;
-}
-
-export function validatePublicSnapshot(snapshot) {
-  const required = ['schemaVersion','id','title','description','developmentState','author','license','publication'];
-  const missing = required.filter(key => !snapshot?.[key]);
-  if (missing.length) throw new Error(`snapshot missing: ${missing.join(', ')}`);
-  if (snapshot.publication.kind !== 'public-snapshot' || snapshot.publication.explicitAuthorization !== true) throw new Error('snapshot authorization is invalid');
-  if (snapshot.developmentState === 'testado' && !(snapshot.evidence || []).length) throw new Error('validated state requires evidence');
-  return true;
-}
-
-export function buildPublicationPreview(project, authorization = {}) {
-  const snapshot = createPublicSnapshot(project, authorization);
-  validatePublicSnapshot(snapshot);
-  const fields = Object.keys(snapshot).filter(key => key !== 'publication').map(name => ({ name, included: Object.hasOwn(snapshot, name) }));
-  const files = [...new Set(authorization.files || [])].map(name => ({ name, included: true }));
-  return { schemaVersion: PUBLIC_SCHEMA_VERSION, fields, files, visibilityUnchanged: true, publicationPerformed: false, snapshot };
-}
+function checkAuthorization(auth) { if (!auth || auth.mode !== 'confirmed' || typeof auth.manifestId !== 'string' || !auth.manifestId || typeof auth.ownerId !== 'string' || !auth.ownerId || typeof auth.confirmedAt !== 'string') throw new Error('explicit authorization proof is required'); if (!Array.isArray(auth.fields) || auth.fields.length === 0) throw new Error('a non-empty field selection is required'); if (auth.fields.some(field => !PUBLIC_FIELDS.has(field))) throw new Error('unknown or non-public field requested'); if (!Array.isArray(auth.inventory)) throw new Error('known attachment inventory is required'); if ((auth.files || []).some(file => !auth.inventory.some(item => item.id === file))) throw new Error('attachment is not in the authorized inventory'); if ((auth.files || []).some(file => /(^|[\\/])\.\.([\\/])|^https?:|^data:|^[\\/]/i.test(file))) throw new Error('unsafe attachment reference'); }
+export function adaptStudioProject(input) { if (!input || typeof input !== 'object') throw new Error('project must be an object'); return { id: input.id, title: input.title, description: input.description, objectives: input.objectives || (input.objective ? [input.objective] : []), developmentState: input.developmentState, documentation: input.documentation || [], diagrams: input.diagrams || [], photographs: input.photographs || [], testEvidence: input.testEvidence || [], components: input.components || [], versions: input.versions || [], author: input.author, collaborators: input.collaborators || [], license: input.license, notices: input.notices || [] }; }
+export function createPreviewSnapshot(input, selection = {}) { if (!Array.isArray(selection.fields) || selection.fields.length === 0) throw new Error('preview requires explicit selected fields'); if (selection.fields.some(field => !PUBLIC_FIELDS.has(field))) throw new Error('unknown or non-public field requested'); const source = adaptStudioProject(input); const snapshot = { schemaVersion: PUBLIC_SCHEMA_VERSION, kind: 'public-snapshot-draft' }; for (const field of selection.fields) snapshot[field] = clone(source[field]); snapshot.files = (selection.files || []).map(id => ({ id, included: true })); return snapshot; }
+export function createPublicSnapshot(input, authorization) { checkAuthorization(authorization); const snapshot = createPreviewSnapshot(input, authorization); snapshot.kind = 'public-snapshot'; snapshot.publication = { manifestId: authorization.manifestId, confirmedAt: authorization.confirmedAt }; validatePublicSnapshot(snapshot); return snapshot; }
+export function validatePublicSnapshot(snapshot) { if (!snapshot || snapshot.kind !== 'public-snapshot') throw new Error('only an authorized snapshot can be published'); for (const key of PRIVATE_KEYS) if (Object.hasOwn(snapshot, key)) throw new Error(`private field rejected: ${key}`); if (snapshot.developmentState === 'testado' || snapshot.developmentState === 'revisado') if (!Array.isArray(snapshot.testEvidence) || !snapshot.testEvidence.some(item => item && typeof item === 'object' && item.type && item.source)) throw new Error('validated state requires structured evidence and provenance'); return true; }
+export function buildPublicationPreview(project, selection = {}) { const snapshot = createPreviewSnapshot(project, selection); return { schemaVersion: PUBLIC_SCHEMA_VERSION, fields: Object.keys(snapshot).filter(key => !['schemaVersion','kind','files'].includes(key)).map(name => ({ name, included: true })), files: snapshot.files, visibilityUnchanged: true, publicationPerformed: false, publishable: false, snapshot }; }

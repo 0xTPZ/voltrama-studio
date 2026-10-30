@@ -2,6 +2,6 @@
 
 O Community consome snapshots públicos versionados (`schemaVersion: 1.0`), não o armazenamento privado do Studio. Um snapshot pode conter identificação, descrição, objetivos, componentes, documentação, diagramas, fotografias, medições, evidências, estado de desenvolvimento, revisões persistidas, autoria, colaboradores, licença e avisos.
 
-O projeto interno e o snapshot são objetos distintos. A visibilidade privada permanece inalterada; a prévia apenas calcula a seleção autorizada e informa `publicationPerformed: false`. Não existe publicação automática nesta missão.
+O projeto interno e o snapshot são objetos distintos. A autorização é fail-closed: manifesto, proprietário, confirmação auditável, campos não vazios e inventário conhecido são obrigatórios. A prévia apenas calcula a seleção e informa `publicationPerformed: false`; ela não está conectada a contas privadas. Não existe publicação automática nesta missão.
 
-Arquivos precisam ser autorizados individualmente. Evidência ausente não pode ser exibida como teste validado, e os exemplos atuais são fictícios. O build público é uma allowlist estática e não lê o banco ou a pasta `data/`.
+Arquivos precisam ser autorizados individualmente por identificador do inventário; caminhos arbitrários são rejeitados. Evidência precisa ser estruturada e possuir proveniência para estados físicos/revisados. Os exemplos atuais são fictícios. O build público copia apenas arquivos allowlisted e não lê o armazenamento privado ou a pasta `data/`.
