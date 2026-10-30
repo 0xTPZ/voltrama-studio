@@ -6,6 +6,8 @@
 - [x] Interface responsiva navegável.
 - [x] Identidade visual e favicon SVG.
 - [x] Decisão inicial de interoperabilidade documentada.
+- [x] Catálogo Community demonstrativo com busca, filtros e detalhes.
+- [x] Modelo compartilhado de projetos com visibilidade privada por padrão.
 - [ ] PR de revisão da fundação.
 
 ## M1 — Projeto e componentes
@@ -26,6 +28,6 @@
 
 ## M4 — Community
 
-- Catálogo público de projetos, documentação e colaboração.
+- Catálogo público persistente, documentação e colaboração autenticada.
 
 Marcos futuros dependem de testes, segurança e validação técnica; este roadmap não representa funcionalidades já disponíveis.
