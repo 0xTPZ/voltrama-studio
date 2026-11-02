@@ -1,5 +1,7 @@
 # Voltrama Studio
 
+[Read this overview in English](README.en.md).
+
 Voltrama Studio é uma fundação open source para engenharia eletrônica: projetos, documentação, componentes e futuras integrações com ferramentas maduras de EDA.
 
 > M0-001 entrega uma interface navegável e a arquitetura inicial. Editor elétrico, simulação e geração de artefatos ainda não estão implementados.
@@ -18,6 +20,14 @@ Abra `src/index.html` em um navegador moderno ou sirva a pasta `src/` com qualqu
 ## Princípios
 
 Clareza antes de automação, interoperabilidade antes de lock-in, rastreabilidade antes de confiança implícita e acessibilidade desde o primeiro componente.
+
+## Limites e testes
+
+Na `main`, o editor elétrico, a simulação, a autenticação de projetos privados e a geração de artefatos ainda não estão implementados. Para executar os testes do repositório:
+
+```powershell
+python -m unittest discover -s tests -v
+```
 
 ## Licença
 
