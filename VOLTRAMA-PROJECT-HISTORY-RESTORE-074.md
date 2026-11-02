@@ -39,4 +39,4 @@ Branch local: `integration/voltrama-studio-unified`
 Base verificada: `4b287a6`  
 Commit final: `25ff1d1`  
 PR: #23 Draft  
-CI no HEAD final: `pull-request-validation` sucesso (run 41451003045) e `test` sucesso (run 41451003036).
+CI no commit de código `25ff1d1`: `pull-request-validation` sucesso (run 41451003045) e `test` sucesso (run 41451003036). O commit documental final `2c7e0d4` ainda não recebeu uma execução nova reportada pela API; não o trato como evidência adicional de teste.
