@@ -11,6 +11,7 @@
 - [x] Primeira fatia local de cadastro, login, sessão e projetos privados persistentes.
 - [x] Histórico imutável de revisões e restauração transacional.
 - [x] Vitrine pública estática demonstrativa preparada para GitHub Pages.
+- [x] Contrato público versionado e prévia explícita sem publicação automática.
 - [ ] PR de revisão da fundação.
 
 ## M1 — Projeto e componentes

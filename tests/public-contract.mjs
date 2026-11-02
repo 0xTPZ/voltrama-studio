@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import { adaptStudioProject, buildPublicationPreview, createPreviewSnapshot, createPublicSnapshot } from '../site/public-project.mjs';
+const project={id:'demo',title:'Demo',description:'x',developmentState:'conceito',documentation:['note'],diagrams:['d.svg'],photographs:[],testEvidence:[],components:[{ref:'R1',name:'resistor'}],versions:[{id:'v1',label:'v1'}],author:{name:'Demo'},license:'MIT'};
+const selection={fields:['id','title','description','developmentState','documentation','diagrams','photographs','testEvidence','components','versions','author','license'],files:['diagram-1']};
+assert.throws(()=>createPublicSnapshot(project)); assert.throws(()=>createPublicSnapshot(project,{mode:'confirmed',manifestId:'m',ownerId:'o',confirmedAt:'now',fields:[],inventory:[]}));
+assert.throws(()=>createPublicSnapshot(project,{mode:'confirmed',manifestId:'m',ownerId:'o',confirmedAt:'now',fields:['privateNotes'],inventory:[]}));
+assert.throws(()=>createPublicSnapshot(project,{mode:'confirmed',manifestId:'m',ownerId:'o',confirmedAt:'now',fields:selection.fields,files:['missing'],inventory:[{id:'diagram-1'}]}));
+assert.throws(()=>createPublicSnapshot(project,{mode:'confirmed',manifestId:'m',ownerId:'o',confirmedAt:'now',fields:selection.fields,files:['../secret'],inventory:[{id:'../secret'}]}));
+const preview=buildPublicationPreview(project,selection); assert.equal(preview.publishable,false); assert.equal(preview.visibilityUnchanged,true); assert.equal(preview.snapshot.kind,'public-snapshot-draft');
+const adapted=adaptStudioProject({id:'x',developmentState:'simulado',documentation:['d'],diagrams:['g'],photographs:['p'],testEvidence:[],components:[],versions:[]}); assert.deepEqual(adapted.documentation,['d']); assert.deepEqual(adapted.diagrams,['g']);
+const auth={mode:'confirmed',manifestId:'m',ownerId:'o',confirmedAt:'now',fields:selection.fields,files:['diagram-1'],inventory:[{id:'diagram-1'}]}; assert.equal(createPublicSnapshot(project,auth).kind,'public-snapshot');
+const bad={...project,developmentState:'testado',testEvidence:['text']}; assert.throws(()=>createPublicSnapshot(bad,auth));
+console.log('public-contract: ok — fail-closed authorization, adapter, inventory and provenance pass');
