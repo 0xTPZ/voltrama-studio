@@ -9,6 +9,7 @@
 - [x] Catálogo Community demonstrativo com busca, filtros e detalhes.
 - [x] Modelo compartilhado de projetos com visibilidade privada por padrão.
 - [x] Vitrine pública estática demonstrativa preparada para GitHub Pages.
+- [x] Contrato público versionado e prévia explícita sem publicação automática.
 - [ ] PR de revisão da fundação.
 
 ## M1 — Projeto e componentes

@@ -2,5 +2,5 @@
   "name": "voltrama-studio",
   "private": true,
   "type": "module",
-  "scripts": {"dev": "node tools/dev-server.mjs", "build:site": "node tools/build-public-site.mjs", "test:site": "node tests/public-site.mjs", "test": "node tests/smoke.mjs && node tests/community.mjs && node tests/navigation.mjs && npm run build:site && npm run test:site"}
+  "scripts": {"dev": "node tools/dev-server.mjs", "build:site": "node tools/build-public-site.mjs", "test:site": "node tests/public-site.mjs", "test:contract": "node tests/public-contract.mjs", "test": "node tests/smoke.mjs && node tests/community.mjs && node tests/navigation.mjs && npm run test:contract && npm run build:site && npm run test:site"}
 }
