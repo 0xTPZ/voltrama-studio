@@ -37,5 +37,6 @@ A funcionalidade está integrada e utilizável, com backend e persistência apro
 
 Branch local: `integration/voltrama-studio-unified`  
 Base verificada: `4b287a6`  
+Commit final: `25ff1d1`  
 PR: #23 Draft  
-CI final deverá ser verificado no novo commit após o push.
+CI no HEAD final: `pull-request-validation` sucesso (run 41451003045) e `test` sucesso (run 41451003036).
