@@ -8,6 +8,7 @@
 - [x] Decisão inicial de interoperabilidade documentada.
 - [x] Catálogo Community demonstrativo com busca, filtros e detalhes.
 - [x] Modelo compartilhado de projetos com visibilidade privada por padrão.
+- [x] Vitrine pública estática demonstrativa preparada para GitHub Pages.
 - [ ] PR de revisão da fundação.
 
 ## M1 — Projeto e componentes
