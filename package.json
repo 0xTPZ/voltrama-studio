@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "dev": "node server/app.mjs",
-    "test": "node tests/smoke.mjs && node tests/community.mjs && node tests/navigation.mjs && node tests/migrations.mjs && node tests/http.mjs"
+    "bootstrap:owner": "node tools/bootstrap-owner.mjs",
+    "test": "node tests/smoke.mjs && node tests/community.mjs && node tests/navigation.mjs && node tests/migrations.mjs && node tests/http.mjs && node tests/bootstrap.mjs"
   },
   "dependencies": {
     "argon2": "^0.45.1"

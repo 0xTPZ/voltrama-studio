@@ -1,0 +1,1 @@
+CREATE TABLE IF NOT EXISTS user_profiles (user_id TEXT PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE, display_name TEXT NOT NULL DEFAULT '', github_username TEXT NOT NULL DEFAULT '', avatar_url TEXT NOT NULL DEFAULT '', bio TEXT NOT NULL DEFAULT '', updated_at TEXT NOT NULL);
