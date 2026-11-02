@@ -5,6 +5,8 @@ Voltrama Studio + Community é uma fundação open source para engenharia eletr�
 
 > M0-003B entrega cadastro, autenticação local, projetos privados persistentes e histórico imutável de snapshots. Publicação, simulação e validação elétrica ainda não estão implementadas.
 
+O catálogo Community continua demonstrativo: snapshots são allowlisted e a prévia de publicação não altera projetos privados. Editor elétrico, simulação e validação elétrica ainda não estão implementados.
+
 ## Estado atual
 
 - Interface responsiva em HTML, CSS e JavaScript, servida pelo backend local.
