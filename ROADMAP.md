@@ -8,6 +8,8 @@
 - [x] Decisão inicial de interoperabilidade documentada.
 - [x] Catálogo Community demonstrativo com busca, filtros e detalhes.
 - [x] Modelo compartilhado de projetos com visibilidade privada por padrão.
+- [x] Primeira fatia local de cadastro, login, sessão e projetos privados persistentes.
+- [x] Histórico imutável de revisões e restauração transacional.
 - [ ] PR de revisão da fundação.
 
 ## M1 — Projeto e componentes
@@ -15,6 +17,7 @@
 - Modelo de projeto versionável.
 - Biblioteca de componentes com metadados e footprints.
 - Importação/exportação controlada de formatos KiCad.
+- Revisão de segurança e sessão persistente adequada para hospedagem.
 
 ## M2 — Editor visual
 

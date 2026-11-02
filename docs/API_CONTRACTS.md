@@ -1,14 +1,19 @@
-# Contratos de API — proposta
+# Contratos de API — proposta e fatia M0-003
 
-Os contratos abaixo são a fronteira futura entre Studio, Community e agentes. Ainda não são endpoints implementados.
+Os endpoints abaixo agora têm uma implementação local mínima. Eles não constituem uma API pronta para produção.
 
-| Operação | Regra mínima |
-| --- | --- |
-| Criar projeto | Servidor força `visibility=privado`. |
-| Listar autorizados | Sessão e ACL por objeto; nunca listar por ID sem autorização. |
-| Editar projeto | Controle de versão e conflito. |
-| Componentes/documentos | Validação de tipo, origem e permissões. |
-| Propor publicação | Gera prévia sem efeito público. |
-| Publicar | Exige confirmação explícita de uma versão/snapshot. |
+| Método | Endpoint | Regra |
+| --- | --- | --- |
+| GET | `/api/auth/csrf` | Emite token CSRF para a sessão local. |
+| POST | `/api/auth/register` | Cria conta com senha Argon2id; requer CSRF. |
+| POST | `/api/auth/login` | Cria sessão HttpOnly; requer CSRF e limite básico de tentativas. |
+| POST | `/api/auth/logout` | Invalida a sessão; requer CSRF. |
+| GET | `/api/auth/me` | Retorna somente a identidade da sessão atual. |
+| GET | `/api/projects` | Lista projetos do proprietário autenticado. |
+| POST | `/api/projects` | Cria projeto privado; proprietário vem da sessão. |
+| GET/PATCH | `/api/projects/{id}` | Consulta ou cria nova revisão somente com `expectedRevision` atual. |
+| GET | `/api/projects/{id}/revisions` | Lista revisões imutáveis do proprietário. |
+| GET | `/api/projects/{id}/revisions/{revisionNumber}` | Consulta snapshot específico autorizado. |
+| POST | `/api/projects/{id}/revisions/{revisionNumber}/restore` | Cria nova revisão a partir de snapshot anterior. |
 
-Uma futura API/MCP deve usar autenticação, escopos curtos, auditoria, revogação e limites por projeto. O agente não é administrador da plataforma.
+Falhas de autorização retornam `404 project_not_found` para não confirmar a existência de recursos de outro usuário. O backend persiste componentes, documentação, diagramas, fotografias, evidências e snapshots de versão. Publicação, compartilhamento, exclusão e MCP continuam fora do escopo.
