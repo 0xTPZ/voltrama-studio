@@ -1,0 +1,17 @@
+{
+  "name": "voltrama-studio",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node server/app.mjs",
+    "bootstrap:owner": "node tools/bootstrap-owner.mjs",
+    "build:site": "node tools/build-public-site.mjs",
+    "test:site": "node tests/public-site.mjs",
+    "test:history-ui": "node tests/history-ui.mjs",
+    "test:contract": "node tests/public-contract.mjs",
+    "test": "node tests/smoke.mjs && node tests/community.mjs && node tests/navigation.mjs && node tests/migrations.mjs && node tests/http.mjs && node tests/bootstrap.mjs && npm run test:contract && npm run build:site && npm run test:site && npm run test:history-ui"
+  },
+  "dependencies": {
+    "argon2": "^0.45.1"
+  }
+}

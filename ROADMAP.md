@@ -6,6 +6,12 @@
 - [x] Interface responsiva navegável.
 - [x] Identidade visual e favicon SVG.
 - [x] Decisão inicial de interoperabilidade documentada.
+- [x] Catálogo Community demonstrativo com busca, filtros e detalhes.
+- [x] Modelo compartilhado de projetos com visibilidade privada por padrão.
+- [x] Primeira fatia local de cadastro, login, sessão e projetos privados persistentes.
+- [x] Histórico imutável de revisões e restauração transacional.
+- [x] Vitrine pública estática demonstrativa preparada para GitHub Pages.
+- [x] Contrato público versionado e prévia explícita sem publicação automática.
 - [ ] PR de revisão da fundação.
 
 ## M1 — Projeto e componentes
@@ -13,6 +19,7 @@
 - Modelo de projeto versionável.
 - Biblioteca de componentes com metadados e footprints.
 - Importação/exportação controlada de formatos KiCad.
+- Revisão de segurança e sessão persistente adequada para hospedagem.
 
 ## M2 — Editor visual
 
@@ -26,6 +33,6 @@
 
 ## M4 — Community
 
-- Catálogo público de projetos, documentação e colaboração.
+- Catálogo público persistente, documentação e colaboração autenticada.
 
 Marcos futuros dependem de testes, segurança e validação técnica; este roadmap não representa funcionalidades já disponíveis.

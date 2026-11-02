@@ -1,0 +1,1 @@
+ALTER TABLE inventory_items ADD COLUMN revision INTEGER NOT NULL DEFAULT 1;
